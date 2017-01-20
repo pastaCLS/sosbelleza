@@ -1,0 +1,198 @@
+@import "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
+
+body {
+  padding-top: 51px;
+}
+
+/* el padding de body tiene que ser igual al height de la barra */
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.footer {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-top: 40px;
+  border-top: 1px solid #eee;
+}
+
+#content-related {
+    font-size: 11px;
+    margin-top: 15px;
+}
+
+#content-related h3 {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 3px;
+}
+
+#content-related h4 {
+    font-size: 11px;
+}
+
+#content-related .module h2 {
+    background: #eee url(../img/nav-bg.gif) bottom left repeat-x;
+    color: #666;
+}
+
+.module {
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    background: #fff;
+}
+
+.module p, .module ul, .module h3, .module h4, .module dl, .module pre {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.module blockquote {
+    margin-left: 12px;
+}
+
+.module h3 {
+    margin-top: .6em;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    margin: 0;
+    padding: 2px 5px 3px 5px;
+    font-size: 11px;
+    text-align: left;
+    font-weight: bold;
+    background: #7CA0C7 url(../img/default-bg.gif) top left repeat-x;
+    color: #fff;
+}
+
+.module table {
+    border-collapse: collapse;
+}
+
+.module ul.actionlist {
+    margin-left: 0;
+}
+
+ul.actionlist li {
+    list-style-type: none;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+}
+
+.deletelink {
+    padding-left: 12px;
+    background: url(../img/icon_changelink.gif) 0 .2em no-repeat;
+}
+
+a.deletelink:link, a.deletelink:visited {
+    color: #CC3434;
+}
+
+a.deletelink:hover {
+    color: #993333;
+}
+
+.addlink {
+    padding-left: 12px;
+    background: url(../img/icon_addlink.gif) 0 .2em no-repeat;
+}
+
+.changelink, .inlinechangelink {
+    padding-left: 12px;
+    background: url(../img/icon_changelink.gif) 0 .2em no-repeat;
+}
+
+.mini {
+    font-size: 9px;
+}
+
+p.mini {
+    margin-top: -2px;
+}
+
+.quiet, a.quiet:link, a.quiet:visited {
+    color: #999 !important;
+    font-weight: normal !important;
+}
+
+.quiet strong {
+    font-weight: bold !important;
+}
+.alert {
+    margin-bottom: 0;
+}
+
+.help-block {
+    display: none;
+}
+
+.navbar-form {
+    margin-right: 0;
+}
+
+/* Home page styling */
+.corporate-jumbo {
+    background: url("/static/site/img/banner.jpg") no-repeat center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    background-size: cover;
+    color: #f5f5f5;
+}
+
+.corporate-jumbo .well {
+    background-color: rgba(245, 245, 245, .7);
+}
+
+.corporate-jumbo p, .corporate-jumbo h1 {
+    color: #eee;
+    text-shadow: 0px 0px 2px black;
+}
+
+.corporate-jumbo p {
+    font-weight: 500;
+}
+
+.corporate-jumbo .well legend {
+    color: #333;
+}
+
+.contact-banner {
+    padding: 100px 0;
+    background: #e0e0e0;
+    margin-top: 100px;
+}
+
+.footer a:hover {
+    text-decoration: none;
+}
+
+/* About page styling */
+#sec1 {
+    background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAJklEQVQIW2NkAIILFy78NzAwYATRjCABZEGwAEwFiA1WBlIOUwkA72gTdDIYVO4AAAAASUVORK5CYII=) repeat;
+}
+
+.text-page {
+    padding: 120px 0;
+}
+
+#map-outer {
+    height: 440px;
+	padding: 40px 20px;
+	margin-bottom: 20px;
+	background-color:#FFF
+}
+
+#map-container {
+    height: 400px
+}
+
+@media all and (max-width: 768px) {
+	#map-outer  { height: 650px }
+}
+
+/* --- */
+
+.spacer {
+  padding-top: 1em;
+}

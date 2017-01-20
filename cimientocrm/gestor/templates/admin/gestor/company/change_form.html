@@ -1,0 +1,19 @@
+{% extends 'change_form.html' %}
+{% load staticfiles %}
+{% load admin_urls %}
+
+{% block tabs %}{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<script type="text/javascript">
+(function($) {
+    parche = "</p><a href='{% url 'admin:gestor_cabinet_changelist' %}'>Modificar gabinetes</a>"
+    $(document).ready(function() {
+        $('.add-row').each(function() {
+            $(this).append(parche);
+        });
+    });
+})(django.jQuery);
+</script>
+{% endblock extrahead %}

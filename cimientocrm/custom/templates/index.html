@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'css/sidebar.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}" />
+<style type="text/css">
+  .boxes {
+    color: white !important;
+    font-size: 21px;
+  }
+
+  #first {
+    background: red !important;
+  }
+
+  .second {
+    background-color: blue;
+  }
+
+  .third {
+    background-color: yellow;
+  }
+
+  .fourth {
+    background-color: green;
+  }
+
+  .digit {
+    font-size: 28px;
+	font-weight: bold;
+  }
+
+  .info {
+    font-size: 11px;
+  }
+
+  .bigger {
+    padding-top: 20px;
+    margin-left: -20px;
+    font-size: 60px;
+  }
+
+</style>
+{% endblock %}
+
+{% block log %}
+<div id="content-related">
+  <div class="module" id="recent-actions-module">
+    <h2>Ultimas acciones</h2>
+    <h3>Mis acciones</h3>
+    {% load log %}
+    {% get_admin_log 10 as admin_log for_user user %}
+    {% if not admin_log %}
+      <p>No disponible</p>
+    {% else %}
+      <ul class="actionlist">
+      {% for entry in admin_log %}
+        <li class="{% if entry.is_addition %}addlink{% endif %}{% if entry.is_change %}changelink{% endif %}{% if entry.is_delection %}deletelink{% endif %}">
+          {% if entry.is_deletion or not entry.get_admin_url %}
+            {{ entry.object_repr }}
+          {% else %}
+            <a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
+          {% endif %}
+          <br/>
+          {% if entry.content_type %}
+            <span class="mini quiet">{% filter capfirst %}{{ entry.content_type }}{% endfilter %}</span>
+          {% else %}
+            <span class="mini quiet">contenido desconocido</span>
+          {% endif %}
+        </li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div id="first" class="panel-body boxes">
+        <div class="container-fluid">
+          <div class="col-md-4"><span class="glyphicon glyphicon-usd bigger"></span></div>
+          <div class="col-md-8">
+            <div class="digit">{{ cobrado|floatformat:2 }}</div></p>
+            <div class="info">Monto cobrado en lo que va del mes de {% now 'M. Y' %}</div>
+            </p>
+            <div class="btn-group pull-right">
+              <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-left"></span></a>
+              <a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        EN CONTRUCCION
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        EN CONSTRUCCION
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        EN CONSTRUCCION
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+<div class="col-md-3">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Sesiones vendidas
+    </div>
+    <div class="clearfix"></div>
+    <div class="panel-body">
+      <table id="sesiones" class="table">
+      {% for session in sessions %}
+        {% if session.count > 0 %}
+        <tr>
+          <td>{{ session.name }}</td>
+          <td>{{ session.count }}</td>
+        </tr>
+        {% endif %}
+      {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Turnos cubiertos en {% now "M. Y" %}
+      <div class="pull-right">
+        <a class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <a class="btn btn-default btn-xs"><span class="glyphicon glyphicon-chevron-right"></span></a>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="panel-body">
+      <table id="turnos" class="table highchart"data-graph-container=".. .. .highchart-container" data-graph-type="line">
+        <thead>
+        <tr>
+          <th>Día</th>
+          <th>Turnos</th>
+        </tr>
+        </thead>
+        <tbody>
+      {% for i in days %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{i}}</td>
+        </tr>
+      {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+  <img style="width:600px" src="{% static 'img/dashboard.png' %}" />
+  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+  <script type="text/javascript" src="{% static 'js/jquery-1.11.3.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/jquery.gvChart.js' %}"></script>
+  <script type="text/javascript">
+    gvChartInit();
+    $(document).ready(function(){
+      jQuery(document).ready(function() {
+        ('#turnos').gvChart({
+          chartType: 'LineChart',
+          gvSettings: {
+          width: 720,
+          height: 300
+          }
+        });
+      });
+    });
+    </script>
+{% endblock %}

@@ -1,0 +1,17 @@
+<ul class="nav nav-tabs">
+  <li role="presentation" {% if active_link == 'dashboard' %}class="active"{% endif %}>
+    <a href="{% url 'admin:index' %}"><span class="glyphicon glyphicon-dashboard"></span> <strong>Dashboard</strong></a>
+  </li>
+  <li role="presentation" {% if active_link == 'customer' %}class="active"{% endif %}>
+    <a href="{{ registered.0.admin_url }}"><span class="glyphicon glyphicon-folder-open"></span> <strong>{{ registered.0.name|capfirst }}</strong></a>
+  </li>
+  <li role="presentation" {% if active_link == 'product' %}class="active"{% endif %}>
+    <a href="{{ registered.7.admin_url }}"><span class="glyphicon glyphicon-oil"></span> <strong>{{ registered.7.name|capfirst }}</strong></a>
+  </li>
+  <li role="presentation" {% if active_link == 'turno' %}class="active"{% endif %}>
+    <a href="{{ registered.12.admin_url }}"><span class="glyphicon glyphicon-calendar"></span> <strong>{{ registered.12.name|capfirst }}</strong></a>
+  </li>
+  <li role="presentation" {% if active_link == 'sale' %}class="active"{% endif %}>
+    <a href="{{ registered.13.add_url }}"><span class="glyphicon glyphicon-piggy-bank"></span> <strong>{{ registered.13.name|capfirst }}</strong></a>
+  </li>
+</ul>

@@ -1,0 +1,15 @@
+Esta es una version custom del admin site de django.
+
+En sites.py hay un hijo de AdminSite que sobreescribe los templates y modifica el context
+
+COMO USARLO
+===========
+Solo sobreescribir en el urls.py del "proyecto" con:
+
+from custom.sites import admine
+...
+url(r'^admin/', include(admine.urls)),
+
+admine es una instancia de CustomAdmin, hijo de AdminSite con sus pertinentes hooks
+
+

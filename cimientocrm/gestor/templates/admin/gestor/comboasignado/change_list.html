@@ -1,0 +1,60 @@
+{% extends 'change_list.html' %}
+{% load staticfiles %}
+{% load i18n admin_list admin_static %}
+
+{% block tabs %}
+{% endblock %}
+
+{% block extrahead %}
+<script type="text/javascript" src="{% static 'admin/js/core.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/admin/RelatedObjectLookups.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/jquery.init.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/actions.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/calendar.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/admin/DateTimeShortcuts.js' %}"></script>
+
+  <style type="text/css">
+    .calendarbox {
+      z-index: 1000;
+    }
+  </style>
+{% endblock extrahead %}
+
+{% block filters %}
+  {% if cl.has_filters %}
+    <div id="changelist-filter">
+      <h2>{% trans 'Filter' %}</h2>
+      {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
+      <h3>Día especifico</h3>
+      <ul>
+        <li>
+          <input class="vDateField alfrente" id="date_gte" size="10" type="text">
+        </li>
+        <li>
+          <input type="submit" class="default" id="trigger" value="Verificar" />
+        </li>
+      </ul>
+    </div>
+  {% endif %}
+
+  <script type="text/javascript">
+    (function($) {
+      $("#trigger").on('click', function() {
+        var buffer = $("#date_gte").val();
+
+        /* cambio a dd/mm/yyyy */
+        buffer = buffer.slice(3,5).concat('-', buffer.slice(0,2), '-', buffer.slice(6));
+
+        if( buffer != '' ) {
+          var gte = new Date(buffer);
+          var lt = new Date();
+          lt.setDate(gte.getDate() + 1);
+
+          {#console.log("/admin/gestor/turno/?date__gte=%.4d-%.2d-%.2d+00:00:00%%2B00:00&date__lt=%.4d-%.2d-%.2d+00:00:00%%2B00:00", gte.getFullYear(), gte.getMonth()+1, gte.getDate(), lt.getFullYear(), lt.getMonth()+1, lt.getDate());#}
+          window.location = '/admin/gestor/turno/?date__gte=' + gte.getFullYear() + '-' + (gte.getMonth()+1) + '-' + gte.getDate() + '+00:00:00%2B00:00&date__lt=' + lt.getFullYear() + '-' + (lt.getMonth()+1) + '-' + lt.getDate() + '+00:00:00%2B00:00';
+        }
+      });
+    })(django.jQuery);
+  </script>
+{% endblock %}
